@@ -34,6 +34,7 @@
   <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white"/>
   <img src="https://img.shields.io/badge/Fusion%20360-FF6F00?style=flat&logo=autodesk&logoColor=white"/>
   <img src="https://img.shields.io/badge/Blender-F5792A?style=flat&logo=blender&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black"/> <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white"/>
 </p>
 
 
@@ -42,4 +43,5 @@
   ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=khaichi11&layout=compact&theme=tokyonight)
 
 ## Links
-- 🌐 GitHub: https://github.com/khaichi11
+- GitHub: https://github.com/khaichi11
+- LinkedIn: https://www.linkedin.com/in/khairuramdhani-%E2%80%8E-64a9a1369/
