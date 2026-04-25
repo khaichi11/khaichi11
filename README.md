@@ -1,8 +1,8 @@
 # Hi, I'm Khai
 
-🎓 Computer Engineering student  
-🧠 Interested in **Computer Vision**, **Deep Learning**, and **Machine Learning**  
-📱 Focused on **on-device AI deployment** for **mobile and resource-constrained systems**
+- Computer Engineering student  
+- Interested in **Computer Vision**, **Deep Learning**, and **Machine Learning**  
+- Focused on **on-device AI deployment** for **mobile and resource-constrained systems**
 
 ---
 
