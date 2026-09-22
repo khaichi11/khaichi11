@@ -44,4 +44,4 @@
 
 ## Links
 - GitHub: https://github.com/khaichi11
-- LinkedIn: https://www.linkedin.com/in/khairuramdhani-%E2%80%8E-64a9a1369/
+- LinkedIn: https://www.linkedin.com/in/khairuramdhani
