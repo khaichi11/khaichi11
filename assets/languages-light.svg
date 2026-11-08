@@ -9,7 +9,7 @@
 </style>
 <rect x="0.5" y="0.5" width="469" height="293" rx="10" fill="#ffffff" stroke="#d0d7de"/>
 <text x="22" y="32" class="t" fill="#1f2328">Most used languages</text>
-<text x="22" y="49" class="s" fill="#59636e">across 13 public repositories, updated 2026-11-09</text>
+<text x="22" y="49" class="s" fill="#59636e">across 13 public repositories, updated 2026-11-08</text>
 <text x="22" y="78" class="n" fill="#1f2328">Dart</text>
 <rect x="134" y="68" width="262" height="10" rx="5" fill="#eaeef2"/>
 <rect class="bar" style="animation-delay:0.00s" x="134" y="68" width="83.2" height="10" rx="5" fill="#00B4AB"/>
