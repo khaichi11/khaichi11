@@ -1,0 +1,46 @@
+name: languages
+
+# Menggambar ulang kartu bahasa setiap kali ada push ke profil ini, sekali
+# sehari, dan kapan pun dijalankan manual dari tab Actions. Kartunya dihasilkan
+# sendiri di sini, bukan dari layanan luar, jadi tidak pernah mati karena
+# layanan orang lain kena batas pemakaian.
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 21 * * *"     # 04.17 WIB
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: languages
+  cancel-in-progress: true
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gambar kartunya
+        env:
+          # GITHUB_TOKEN cukup untuk repositori publik. Untuk ikut menghitung
+          # repositori privat, buat token pribadi bercakupan repo lalu simpan
+          # sebagai secret bernama STATS_TOKEN.
+          GITHUB_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: python3 scripts/langcard.py "${{ github.repository_owner }}"
+
+      - name: Simpan kalau berubah
+        run: |
+          if [ -z "$(git status --porcelain assets)" ]; then
+            echo "tidak ada perubahan"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          git commit -m "chore(assets): refresh the language card"
+          git push
