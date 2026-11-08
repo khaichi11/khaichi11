@@ -22,6 +22,11 @@ from datetime import date
 
 API = "https://api.github.com"
 TOP = 6
+# Dihitung per repositori, bukan per byte. Satu notebook berisi keluaran gambar
+# bisa berukuran puluhan megabyte dan membuat proyek C yang jauh lebih banyak
+# dikerjakan terlihat sekecil dua persen. Dengan cara ini tiap repositori punya
+# bobot yang sama, jadi angkanya mendekati "bahasa yang benar-benar dipakai".
+BY_REPO = True
 SKIP_LANGS = {"Makefile", "Dockerfile", "Shell", "Batchfile", "CMake"}
 SKIP_REPOS = set()          # nama repositori yang tidak ingin ikut dihitung
 
@@ -70,24 +75,33 @@ def repos(user):
         page += 1
 
 
-def collect(user):
-    """Jumlah byte per bahasa, dari repositori sendiri yang bukan fork."""
-    total = {}
-    counted = 0
+def mine(user):
+    """Repositori sendiri yang bukan fork dan tidak diarsipkan."""
+    out = []
     for repo in repos(user):
         if repo.get("fork") or repo.get("archived") or repo["name"] in SKIP_REPOS:
             continue
+        out.append(repo)
+    out = [r for r in out if r["name"].lower() != user.lower()]   # profil ini sendiri
+    return out
+
+
+def collect(owned):
+    """Porsi tiap bahasa. Lihat catatan pada BY_REPO."""
+    total = {}
+    counted = 0
+    for repo in owned:
         try:
             langs = get(repo["languages_url"])
         except urllib.error.HTTPError:
             continue
+        langs = {k: v for k, v in langs.items() if k not in SKIP_LANGS}
         if not langs:
             continue
         counted += 1
+        scale = sum(langs.values()) if BY_REPO else 1
         for name, size in langs.items():
-            if name in SKIP_LANGS:
-                continue
-            total[name] = total.get(name, 0) + size
+            total[name] = total.get(name, 0) + size / scale
     return total, counted
 
 
@@ -145,17 +159,62 @@ def card(data, counted, theme, user):
     return "\n".join(parts) + "\n"
 
 
+def recent_card(owned, theme):
+    """Kartu kecil: beberapa repositori yang paling baru disentuh."""
+    c = THEMES[theme]
+    picks = sorted(owned, key=lambda r: r.get("pushed_at") or "", reverse=True)[:4]
+    width, row_h, pad, head = 470, 46, 22, 58
+    height = head + row_h * len(picks) + 10
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}" role="img" aria-label="Pekerjaan terbaru">',
+        "<style>",
+        "  .t{font:600 15px ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}",
+        "  .s{font:400 11px ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}",
+        "  .n{font:600 13px ui-sans-serif,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}",
+        "</style>",
+        f'<rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="10" '
+        f'fill="{c["bg"]}" stroke="{c["edge"]}"/>',
+        f'<text x="{pad}" y="32" class="t" fill="{c["title"]}">Recently worked on</text>',
+        f'<text x="{pad}" y="47" class="s" fill="{c["muted"]}">'
+        f'updated {date.today().isoformat()}</text>',
+    ]
+    for i, repo in enumerate(picks):
+        y = head + i * row_h
+        lang = repo.get("language") or ""
+        desc = (repo.get("description") or "").strip()
+        if len(desc) > 66:
+            desc = desc[:65].rstrip() + "\u2026"
+        parts.append(f'<text x="{pad}" y="{y + 16}" class="n" fill="{c["title"]}">'
+                     f'{esc(repo["name"])}</text>')
+        if lang:
+            # Bahasa ditulis rata kanan supaya tidak bergantung pada panjang nama.
+            dot = COLORS.get(lang, SPARE[i % len(SPARE)])
+            parts.append(f'<text x="{width - pad}" y="{y + 16}" class="s" '
+                         f'fill="{c["muted"]}" text-anchor="end">{esc(lang)}</text>')
+            parts.append(f'<circle cx="{width - pad - 7.2 * len(lang) - 10}" cy="{y + 11.5}" '
+                         f'r="4" fill="{dot}"/>')
+        if desc:
+            parts.append(f'<text x="{pad}" y="{y + 33}" class="s" fill="{c["text"]}">'
+                         f'{esc(desc)}</text>')
+    parts.append("</svg>")
+    return "\n".join(parts) + "\n"
+
+
 def main():
     user = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("GITHUB_REPOSITORY_OWNER")
     if not user:
         sys.exit("pemakaian: langcard.py <nama-pengguna>")
-    data, counted = collect(user)
+    owned = mine(user)
+    data, counted = collect(owned)
     if not data:
         sys.exit("tidak ada bahasa yang terbaca")
     os.makedirs("assets", exist_ok=True)
     for theme in THEMES:
         with open(f"assets/languages-{theme}.svg", "w") as f:
             f.write(card(data, counted, theme, user))
+        with open(f"assets/recent-{theme}.svg", "w") as f:
+            f.write(recent_card(owned, theme))
     grand = sum(data.values())
     print(f"{counted} repositori, {len(data)} bahasa")
     for name, size in sorted(data.items(), key=lambda kv: -kv[1])[:TOP]:

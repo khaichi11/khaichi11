@@ -22,15 +22,29 @@
   <img alt="Most used languages across my public repositories" src="assets/languages-dark.svg" width="470">
 </picture>
 
-Counted from my own public repositories, forks and archived ones left out. The
-card is drawn by [scripts/langcard.py](scripts/langcard.py) and redrawn by a
+Counted per repository rather than per byte, so one notebook full of saved
+output does not drown out a project written in C. Forks and archived
+repositories are left out. The card is drawn by
+[scripts/langcard.py](scripts/langcard.py) and redrawn by a
 [workflow](.github/workflows/languages.yml) on every push and once a day, so it
-is never waiting on someone else's server.
+never waits on someone else's server.
 
 ---
 
-## Currently building
+## Recently worked on
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/recent-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/recent-light.svg">
+  <img alt="Repositories I pushed to most recently" src="assets/recent-dark.svg" width="470">
+</picture>
+
+- **[MEIRA](https://github.com/khaichi11/MEIRA)** — an offline kitchen and
+  nutrition assistant for Android. Photograph your ingredients and it marks and
+  names each one, reads package labels with OCR, suggests recipes from a book of
+  285 stored on the phone, and keeps your meal log, weight and fasting window.
+  Flutter in front, D-FINE, PP-OCRv5, Qwen3.5 and Whisper running on the device
+  itself, so nothing leaves the phone.
 - **[tsunagu-pad](https://github.com/khaichi11/tsunagu-pad)** — turns an iPad
   into a second screen for Ubuntu over Wi-Fi, with Apple Pencil input and no app
   to install on the iPad. Written in C with GStreamer and WebRTC.
@@ -42,7 +56,7 @@ is never waiting on someone else's server.
 ### Programming Languages
 <p>
   <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white"/>
-  <img src="https://img.shields.io/badge/C-555555?style=flat&logo=c&logoColor=white"/>
+  <img src="https://img.shields.io/badge/C-A8B9CC?style=flat"/>
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white"/>
 </p>
