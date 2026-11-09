@@ -45,7 +45,7 @@ never waits on someone else's server.
   285 stored on the phone, and keeps your meal log, weight and fasting window.
   Flutter in front, D-FINE, PP-OCRv5, Qwen3.5 and Whisper running on the device
   itself, so nothing leaves the phone.
-- **[tsunagu-pad](https://github.com/khaichi11/tsunagu-pad)** — turns an iPad
+- **tsunagu-pad** (private) — turns an iPad
   into a second screen for Ubuntu over Wi-Fi, with Apple Pencil input and no app
   to install on the iPad. Written in C with GStreamer and WebRTC.
 
