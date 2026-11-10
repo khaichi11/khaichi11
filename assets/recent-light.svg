@@ -6,7 +6,7 @@
 </style>
 <rect x="0.5" y="0.5" width="469" height="251" rx="10" fill="#ffffff" stroke="#d0d7de"/>
 <text x="22" y="32" class="t" fill="#1f2328">Recently worked on</text>
-<text x="22" y="47" class="s" fill="#59636e">updated 2026-11-09</text>
+<text x="22" y="47" class="s" fill="#59636e">updated 2026-11-10</text>
 <text x="22" y="74" class="n" fill="#1f2328">RGB-D-dataset-Labelling-APP</text>
 <text x="448" y="74" class="s" fill="#59636e" text-anchor="end">Python</text>
 <circle cx="394.8" cy="69.5" r="4" fill="#3572A5"/>
