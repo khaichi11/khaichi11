@@ -6,18 +6,18 @@
 </style>
 <rect x="0.5" y="0.5" width="469" height="251" rx="10" fill="#0d1117" stroke="#30363d"/>
 <text x="22" y="32" class="t" fill="#e6edf3">Recently worked on</text>
-<text x="22" y="47" class="s" fill="#8b949e">updated 2026-11-10</text>
+<text x="22" y="47" class="s" fill="#8b949e">updated 2026-11-11</text>
 <text x="22" y="74" class="n" fill="#e6edf3">RGB-D-dataset-Labelling-APP</text>
 <text x="448" y="74" class="s" fill="#8b949e" text-anchor="end">Python</text>
 <circle cx="394.8" cy="69.5" r="4" fill="#3572A5"/>
-<text x="22" y="120" class="n" fill="#e6edf3">tsunagupad</text>
-<text x="448" y="120" class="s" fill="#8b949e" text-anchor="end">C</text>
-<circle cx="430.8" cy="115.5" r="4" fill="#555555"/>
-<text x="22" y="137" class="s" fill="#c9d1d9">Use an iPad as a second screen for Ubuntu over Wi-Fi: a real moni…</text>
-<text x="22" y="166" class="n" fill="#e6edf3">ukur-tangga</text>
-<text x="448" y="166" class="s" fill="#8b949e" text-anchor="end">JavaScript</text>
-<circle cx="366.0" cy="161.5" r="4" fill="#f1e05a"/>
-<text x="22" y="183" class="s" fill="#c9d1d9">Pendataan ukuran anak tangga di lapangan (iPad, offline): tinggi…</text>
+<text x="22" y="120" class="n" fill="#e6edf3">ukur-tangga</text>
+<text x="448" y="120" class="s" fill="#8b949e" text-anchor="end">JavaScript</text>
+<circle cx="366.0" cy="115.5" r="4" fill="#f1e05a"/>
+<text x="22" y="137" class="s" fill="#c9d1d9">Pendataan ukuran anak tangga di lapangan (iPad, offline): tinggi…</text>
+<text x="22" y="166" class="n" fill="#e6edf3">tsunagupad</text>
+<text x="448" y="166" class="s" fill="#8b949e" text-anchor="end">C</text>
+<circle cx="430.8" cy="161.5" r="4" fill="#555555"/>
+<text x="22" y="183" class="s" fill="#c9d1d9">Use an iPad as a second screen for Ubuntu over Wi-Fi: a real moni…</text>
 <text x="22" y="212" class="n" fill="#e6edf3">MEIRA</text>
 <text x="448" y="212" class="s" fill="#8b949e" text-anchor="end">Dart</text>
 <circle cx="409.2" cy="207.5" r="4" fill="#00B4AB"/>
